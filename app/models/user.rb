@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  rolify
   has_one :team
   has_many :user_games
   has_many :games, through: :user_games
