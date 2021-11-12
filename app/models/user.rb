@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   rolify
-  has_one :team
+  belongs_to :team
   has_many :user_games
   has_many :games, through: :user_games
   # Include default devise modules. Others available are:
