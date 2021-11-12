@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations'}
   resources :games
-  root to: "games#index"
+  root to: "events#index"
 end

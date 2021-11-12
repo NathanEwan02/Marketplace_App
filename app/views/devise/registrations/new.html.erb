@@ -21,12 +21,10 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-  <!-- 
   <div class="field">
     <%= f.label :roles %>
-    <%= f.collection_check_boxes :role_ids, @ %>
+    <%= f.collection_check_boxes :role_ids, Role.order(:name), :id, :name %>
   </div>
-  -->
 
   <div class="actions">
     <%= f.submit "Sign up" %>
