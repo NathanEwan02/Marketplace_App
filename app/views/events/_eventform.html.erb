@@ -1,21 +1,21 @@
 <%= form_with model: @event do |f| %>
-    <div>
+    <p>
         <%= f.label :name %>
         <%= f.text_field :name %>
-    </div>
-    <div>
+    </p>
+    <p>
         <%= f.label :date %>
-        <%= f.date_field :name %>
-    </div>
-    <div>
+        <%= f.date_field :date %>
+    </p>
+    <p>
         <%= f.label :location %>
         <%= f.text_field :location %>
-    </div>
-    <div>
+    </p>
+    <p>
         <%= f.label :game_id %>
         <%= f.collection_select :game_id, @games, :id, :name %>
-    </div>
-    <div>
+    </p>
+    <p>
         <%= f.submit caption %>
-    </div>
+    </p>
 <% end %>
