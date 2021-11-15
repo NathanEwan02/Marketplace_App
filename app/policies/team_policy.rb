@@ -1,5 +1,4 @@
-
-class EventPolicy
+class ApplicationPolicy
     attr_reader :user, :record
   
     def initialize(user, record)
@@ -8,15 +7,15 @@ class EventPolicy
     end
   
     def index?
-      true
+      false
     end
   
     def show?
-      true
+      false
     end
   
     def create?
-        return manager_or_org
+      false
     end
   
     def new?
@@ -24,7 +23,7 @@ class EventPolicy
     end
   
     def update?
-        return manager_or_org
+      false
     end
   
     def edit?
@@ -32,17 +31,7 @@ class EventPolicy
     end
   
     def destroy?
-        return manager_or_org
-    end
-
-    private 
-
-    def manager_or_org
-        if @user.has_role?(:manager) || @user.has_role?(:organiser)
-            return true
-        else
-            return false
-        end
+      false
     end
   
     class Scope
@@ -60,5 +49,3 @@ class EventPolicy
         attr_reader :user, :scope
     end
 end
-
-  
