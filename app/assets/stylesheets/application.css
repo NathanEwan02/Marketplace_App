@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+
+ #errors {
+     margin: 0.5rem, 0;
+     padding: 0.25rem, 0.5rem;
+     border-radius: 0.5rem;
+     background-color: rgb(199, 32, 32);
+ }
+
+ #errors p {
+    margin: 0;
+ }
