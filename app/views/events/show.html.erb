@@ -6,8 +6,12 @@
 
 <p>
     <%= link_to "Back to Events", events_path %>
-    |
-    <%= link_to "Edit Event", edit_event_path %>
-    |
-    <%  %>
+    <% if policy(@event).update? %>
+        |
+        <%= link_to "Edit Event", edit_event_path(@event) %>
+    <% end %>
+    <% if policy(@event).destroy? %>
+        |
+        <%= link_to "Delete", @event, method: :delete, data: { confirm: "Are you sure you would like to delete this event?"} %>
+    <% end %>
 </p>

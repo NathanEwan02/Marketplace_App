@@ -1,0 +1,13 @@
+<%= form_with model: @teams do |f| %>
+    <p>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+    </p>
+    <p>
+        <%= f.label :users %>
+        <%= f.collection_check_boxes :user_ids, @users, :id, :email %>
+    </p>
+    <p>
+        <%= f.submit caption %>
+    <p>
+<% end %>

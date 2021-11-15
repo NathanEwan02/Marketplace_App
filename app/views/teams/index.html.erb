@@ -1,0 +1,16 @@
+<h1>Teams<h1>
+
+<p><%= link_to "Create New Team", new_team_path %></p>
+
+<table>
+    <tr>
+        <th>Team Name</th>
+        <th>Players</th>
+    </tr>
+    <% @teams.each do |team| %>
+        <tr>
+            <td><%= link_to team.name, team %></td>
+            <td><%= team.users.map { |u| u.email }.join(", ") %></td>
+        </tr>
+    <% end %>
+</table>

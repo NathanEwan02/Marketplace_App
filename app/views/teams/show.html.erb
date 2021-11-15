@@ -1,0 +1,17 @@
+<h1><%= @team.name %></h1>
+
+<h3>Name: <%= @team.name %></h3>
+<h3>Players: <%= @team.users.map { |u| u.email }.join(", ") %></h3>
+
+
+<p>
+    <%= link_to "Back to Teams", teams_path %>
+    <% if policy(@team).update? %>
+        |
+        <%= link_to "Edit Team", edit_team_path(@team) %>
+    <% end %>
+    <% if policy(@team).destroy? %>
+        |
+        <%= link_to "Delete", @team, method: :delete, data: { confirm: "Are you sure you would like to delete this team?"} %>
+    <% end %>
+</p>
