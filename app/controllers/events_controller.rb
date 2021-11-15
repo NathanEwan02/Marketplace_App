@@ -13,7 +13,6 @@ class EventsController < ApplicationController
     end
 
     def create 
-        params.inspect
         @event = Event.new(event_params)
         begin
             @event.save!
@@ -35,6 +34,11 @@ class EventsController < ApplicationController
     def show
     end
 
+    def destroy
+        @event.destroy
+        redirect_to events_path
+    end
+
     private
 
     def event_params
@@ -52,5 +56,4 @@ class EventsController < ApplicationController
     def check_auth
         authorize Event
     end
-
 end
