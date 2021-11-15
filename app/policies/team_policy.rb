@@ -7,15 +7,15 @@ class ApplicationPolicy
     end
   
     def index?
-      false
+      true
     end
   
     def show?
-      false
+      true
     end
   
     def create?
-      false
+      return is_manager
     end
   
     def new?
@@ -23,7 +23,7 @@ class ApplicationPolicy
     end
   
     def update?
-      false
+      return is_manager
     end
   
     def edit?
@@ -31,7 +31,17 @@ class ApplicationPolicy
     end
   
     def destroy?
-      false
+      return is_manager
+    end
+
+    private
+
+    def is_manager
+        if @user.has_role?(:manager)
+            return true
+        else  
+            return false 
+        end
     end
   
     class Scope
