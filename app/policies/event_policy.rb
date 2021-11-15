@@ -16,11 +16,7 @@ class EventPolicy
     end
   
     def create?
-        if @user.has_role?(:manager) || @user.has_role?(:organiser)
-            return true
-        else
-            return false
-        end
+        return manager_or_org
     end
   
     def new?
@@ -28,11 +24,7 @@ class EventPolicy
     end
   
     def update?
-        if @user.has_role?(:manager) || @user.has_role?(:organiser)
-            return true
-        else
-            return false
-        end
+        return manager_or_org
     end
   
     def edit?
@@ -40,7 +32,17 @@ class EventPolicy
     end
   
     def destroy?
-      false
+        return manager_or_org
+    end
+
+    private 
+
+    def manager_or_org
+        if @user.has_role?(:manager) || @user.has_role?(:organiser)
+            return true
+        else
+            return false
+        end
     end
   
     class Scope
