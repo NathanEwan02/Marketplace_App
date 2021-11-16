@@ -1,5 +1,6 @@
 class Event < ApplicationRecord
     resourcify 
+
     has_many :team_events, dependent: :destroy
     has_many :teams, through: :team_events
     belongs_to :game

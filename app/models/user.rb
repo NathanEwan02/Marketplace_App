@@ -3,7 +3,7 @@ class User < ApplicationRecord
 
   rolify
 
-  belongs_to :team
+  belongs_to :team, optional: true
   has_many :user_games
   has_many :games, through: :user_games
   # Include default devise modules. Others available are:
@@ -14,5 +14,5 @@ class User < ApplicationRecord
   def set_role
     self.add_role(:player)
   end
-  
+
 end
