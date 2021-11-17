@@ -1,7 +1,9 @@
 class TeamsController < ApplicationController
     before_action :authenticate_user!
     before_action :check_auth
-    before_action :set_users_and_games, only: [:new, :create, :edit]
+    before_action :set_games, only: [:new, :create, :edit]
+    before_action :users_without_team, only: [:new, :create]
+    before_action :users_in_or_without_team, only: [:edit]
     before_action :find_team, only: [:show, :edit, :destroy, :update]
 
     def index 
@@ -54,9 +56,16 @@ class TeamsController < ApplicationController
         @team = Team.find(params[:id])
     end
 
-    def set_users_and_games
-        @users = User.order(:email)
+    def set_games
         @games = Game.order(:name)
     end
 
+    def users_without_team
+        @users = User.where(team_id: nil).order(:email)
+    end
+
+    def users_in_or_without_team
+        find_team
+        @users = User.where(team_id: nil).or(User.where(team_id: @team)).order(:email)
+    end
 end
