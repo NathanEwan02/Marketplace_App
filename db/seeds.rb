@@ -33,9 +33,9 @@ Team.create!(name: 'Hunters', games: [games[2]], events: [events[1], events[0]])
 Role.create!(name: 'manager')
 Role.create!(name: 'organiser')
 
-User.create!(email: 'foo@bar.com', password: 'password', team_id: 1)
+User.create!(email: 'foo@bar.com', username: 'James99', password: 'password', team_id: 1)
 #User.first.update(team_id: 1)
 User.first.add_role :manager
 
-User.create!(email: 'a@b.com', password: 'password')
-User.create!(email: 'x@y.com', password: 'password')
+User.create!(email: 'a@b.com', username: "Connor01", password: 'password')
+User.create!(email: 'x@y.com', username: "Snorlax", password: 'password')
