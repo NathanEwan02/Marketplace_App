@@ -23,7 +23,7 @@ class TeamPolicy
     end
   
     def update?
-      return is_manager
+      return has_manager_id
     end
   
     def edit?
@@ -31,7 +31,7 @@ class TeamPolicy
     end
   
     def destroy?
-      return is_manager
+      return has_manager_id
     end
 
     private
@@ -42,6 +42,13 @@ class TeamPolicy
         else  
             return false 
         end
+    end
+
+    def has_manager_id
+      if is_manager == true && @team.manager_id == current_user.id
+        return true
+      else
+        return false
     end
   
     class Scope
