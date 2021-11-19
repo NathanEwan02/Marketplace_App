@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
     before_action :authenticate_user!
-    before_action :check_auth
+    #before_action :check_auth
     before_action :set_games, only: [:new, :create, :edit]
     before_action :find_event, only: [:show, :edit, :destroy, :update]
 
@@ -42,11 +42,12 @@ class EventsController < ApplicationController
     private
 
     def event_params
-        params.require(:event).permit(:name, :date, :location, :game_id)
+        params.require(:event).permit(:name, :creator_id, :date, :location, :game_id)
     end
 
     def find_event
         @event = Event.find(params[:id])
+        authorize @event
     end
 
     def set_games
