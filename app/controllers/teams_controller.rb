@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
     before_action :authenticate_user!
-    before_action :check_auth
+    #before_action :check_auth
     before_action :set_games, only: [:new, :create, :edit]
     before_action :users_without_team, only: [:new, :create]
     before_action :users_in_or_without_team, only: [:edit]
@@ -18,11 +18,10 @@ class TeamsController < ApplicationController
     end
 
     def create 
-        p team_params
         @team = Team.new(team_params)
         begin
             @team.save!
-            redirect_to @teams
+            redirect_to @team
         rescue 
             flash.now[:errors] = @team.errors.messages.values.flatten
             render 'new'
@@ -45,7 +44,7 @@ class TeamsController < ApplicationController
     private
 
     def team_params
-        params.require(:team).permit(:name, user_ids: [], game_ids: [])
+        params.require(:team).permit(:name, :manager_id, user_ids: [], game_ids: [])
     end
 
     def check_auth
@@ -54,6 +53,7 @@ class TeamsController < ApplicationController
 
     def find_team
         @team = Team.find(params[:id])
+        authorize @team
     end
 
     def set_games
