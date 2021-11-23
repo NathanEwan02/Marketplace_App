@@ -1,4 +1,4 @@
-class TeamPolicy
+class TeamPolicy < ApplicationPolicy
     attr_reader :user, :record
   
     def initialize(user, record)
@@ -45,10 +45,11 @@ class TeamPolicy
     end
 
     def has_manager_id
-      if is_manager == true && @team.manager_id == current_user.id
+      if is_manager == true && @record.manager_id == @user.id
         return true
       else
         return false
+      end
     end
   
     class Scope

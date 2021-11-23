@@ -1,5 +1,5 @@
 
-class EventPolicy
+class EventPolicy < ApplicationPolicy
     attr_reader :user, :record
   
     def initialize(user, record)
@@ -24,7 +24,7 @@ class EventPolicy
     end
   
     def update?
-        return manager_or_org
+        return has_creator_id
     end
   
     def edit?
@@ -32,7 +32,7 @@ class EventPolicy
     end
   
     def destroy?
-        return manager_or_org
+        return has_creator_id
     end
 
     private 
@@ -43,6 +43,14 @@ class EventPolicy
         else
             return false
         end
+    end
+
+    def has_creator_id
+      if manager_or_org == true && @record.creator_id == @user.id
+        return true 
+      else
+        return false
+      end
     end
   
     class Scope

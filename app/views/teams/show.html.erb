@@ -1,7 +1,24 @@
 <h1><%= @team.name %></h1>
 
 <h3>Name: <%= @team.name %></h3>
-<h3>Players: <%= @team.users.map { |u| u.email }.join(", ") %></h3>
+
+<h3>Players:
+    <% if @team.users.empty? %>
+        <%= "N/A" %>
+    <% else %>
+        <%= @team.users.map { |u| u.username }.join(", ") %>
+    <%end%>
+</h3>
+
+<h3>Manager: 
+    <% if @team.manager.nil? %>
+        <%= "N/A" %>
+    <% else %>
+        <%= @team.manager.username %>
+    <% end %>
+</h3>
+
+<h3>Games: <%= @team.games.map { |g| g.name }.join(", ") %></h3>
 
 
 <p>

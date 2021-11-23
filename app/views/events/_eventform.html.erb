@@ -4,6 +4,13 @@
         <%= f.text_field :name %>
     </p>
     <p>
+        <%= f.label :image %>
+        <%= f.file_field :image %>
+    </p>
+    <p>
+        <%= f.hidden_field :creator_id, value: current_user.id %>
+    </p>
+    <p>
         <%= f.label :date %>
         <%= f.date_field :date %>
     </p>

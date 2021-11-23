@@ -1,8 +1,20 @@
 <h1><%= @event.name %></h1>
 
+<% if @event.image.attached? %>
+    <%= image_tag @event.image, width: 400 %>
+<% end %>
+
 <h3>Adress: <%= @event.location %></h3>
 <h3>Date: <%= @event.date %></h3>
-<h3>Game: <%= @event.game.name %></h3>
+<h3>Game: <%= link_to @event.game.name, games_path %></h3>
+<h3>Teams: <%= @event.teams.map { |t| t.name}.join(", ") %></h3>
+<h3>Players:
+    <% if @event.users.empty? %> 
+        <%= "N/A" %>
+    <% else %>
+        <%= @event.users.map { |u| u.username }.join(", ") %>
+    <% end %>
+</h3>
 
 <p>
     <%= link_to "Back to Events", events_path %>

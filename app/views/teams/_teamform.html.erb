@@ -4,6 +4,9 @@
         <%= f.text_field :name %>
     </p>
     <p>
+        <%= f.hidden_field :manager_id, value: current_user.id %>
+    </p>
+    <p>
         <%= f.label :users %>
         <%= f.collection_check_boxes :user_ids, @users, :id, :email %>
     </p>
